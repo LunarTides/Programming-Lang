@@ -1,4 +1,4 @@
 #/bin/bash
 clang-format -i ./src/*
-g++ ./src/main.cpp -o ./bin/debug.x86_64 && \
+./build && \
 ./bin/debug.x86_64 $1
