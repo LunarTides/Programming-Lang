@@ -1,6 +1,6 @@
 #/bin/bash
-cat ./src/* > current.txt
-clang-format ./src/* > correct.txt
+cat ./src/**/** > current.txt
+clang-format ./src/**/** > correct.txt
 
 diff -p current.txt correct.txt
 error_code=$?

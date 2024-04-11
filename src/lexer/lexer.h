@@ -17,4 +17,5 @@ class Lexer {
 public:
 	std::vector<Token> lex_file(std::string p_file_path);
 	std::vector<Token> lex_string(std::string p_lines);
+	Token lex_word(std::string p_word);
 };

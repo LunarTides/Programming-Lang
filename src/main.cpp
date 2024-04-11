@@ -1,4 +1,4 @@
-#include "lexer.cpp"
+#include "lexer/lexer.cpp"
 #include "macros.h"
 
 #include <iostream>
