@@ -2,6 +2,11 @@
 
 #include <iostream>
 
+#define DEBUG_ENABLED 1
+
+// Uncomment this line to disable debug mode.
+#undef DEBUG_ENABLED
+
 #define likely(x) __builtin_expect(!!(x), 1)
 #define unlikely(x) __builtin_expect(!!(x), 0)
 
@@ -28,3 +33,11 @@
 		std::cerr << "FATAL: Condition '" << #cond << "' failed. Exiting..." << std::endl; \
 		exit(error_code);                                                                  \
 	}
+
+#ifdef DEBUG_ENABLED
+#define PRINT_DEBUG(...) \
+	printf(__VA_ARGS__)
+#else
+#define PRINT_DEBUG(...) \
+	{}
+#endif

@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 cat ./src/**/** > current.txt
 clang-format ./src/**/** > correct.txt
 
