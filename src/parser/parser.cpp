@@ -1,12 +1,13 @@
 #include "parser.h"
-#include "../macros.h"
 
-#include <algorithm>
+#include "../macros.h"
+#include "../util/util.h"
+
 #include <vector>
 
 ParserError Parser::parse_tokens(std::vector<Token> &p_tokens) {
 	for (Token token : p_tokens) {
-		PRINT_DEBUG("Token: %d %s", token.token_type, token.token_value.c_str());
+		PRINT_DEBUG("[Parser] Parsing token: [%d] (%d) %s\n", token.token_index, token.token_type, token.token_value.c_str());
 
 		// TODO: Don't hardcode this.
 		if (token.token_type == TokenType::IDENTIFIER) {
@@ -27,7 +28,7 @@ ParserError Parser::parse_tokens(std::vector<Token> &p_tokens) {
 std::vector<Token> get_all_in_function(std::vector<Token> &p_tokens, Token &p_token) {
 	std::vector<Token> tokens;
 
-	int position = index_of(p_tokens, p_token);
+	int position = util::index_of(p_tokens, p_token);
 
 	CRASH_MSG_IF(position == -1, "Token cannot be found in the list of tokens. (BUG)", 1);
 
@@ -63,14 +64,4 @@ std::vector<Token> get_all_in_function(std::vector<Token> &p_tokens, Token &p_to
 	}
 
 	FAIL_MSG_IF(true, "Unclosed parentheses.", tokens);
-}
-
-int index_of(std::vector<Token> &p_tokens, Token &p_token) {
-	auto it = std::find(p_tokens.begin(), p_tokens.end(), p_token);
-
-	if (it != p_tokens.end()) {
-		return it - p_tokens.begin();
-	} else {
-		return -1;
-	}
 }

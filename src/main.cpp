@@ -8,22 +8,14 @@
 int main(int argc, char **argv) {
 	CRASH_MSG_IF(argc < 2, "Not enough arguments.", 1);
 
-	PRINT_DEBUG("Lexing...\n");
+	PRINT_DEBUG("[Main] Lexing...\n");
 
 	Lexer *lexer = new Lexer();
 	std::vector<Token> tokens = lexer->lex_file(argv[1]);
 
 	CRASH_IF(tokens.empty(), 1);
 
-#ifdef DEBUG_ENABLED
-	// Print all of the tokens for debugging.
-	// TODO: Remove.
-	for (Token &token : tokens) {
-		std::cout << "{ " << token.token_type << ", " << token.token_value << " }" << std::endl;
-	}
-
-	printf("Parsing...\n");
-#endif
+	PRINT_DEBUG("[Main] Parsing...\n");
 
 	Parser *parser = new Parser();
 	ParserError parse_error = parser->parse_tokens(tokens);
