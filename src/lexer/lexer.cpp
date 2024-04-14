@@ -1,18 +1,13 @@
 #include "lexer.h"
+
 #include "../macros.h"
+#include "../token.h"
 #include "../util/util.cpp"
 
 #include <fstream>
 #include <regex>
 #include <string>
 #include <vector>
-
-bool operator==(Token a, Token b) {
-	return (
-			a.token_type == b.token_type &&
-			a.token_value == b.token_value &&
-			a.token_index == b.token_index);
-}
 
 std::vector<Token> Lexer::lex_file(std::string p_file_path) {
 	std::string lines;
@@ -27,10 +22,10 @@ std::vector<Token> Lexer::lex_file(std::string p_file_path) {
 
 	file.close();
 
-	return lex_string(lines);
+	return lex_lines(lines);
 }
 
-std::vector<Token> Lexer::lex_string(std::string p_lines) {
+std::vector<Token> Lexer::lex_lines(std::string p_lines) {
 	PRINT_DEBUG("[Lexer] File Contents: %s", p_lines.c_str());
 
 	std::vector<Token> tokens;

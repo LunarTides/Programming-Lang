@@ -1,6 +1,7 @@
 #include "parser.h"
 
 #include "../macros.h"
+#include "../token.h"
 #include "../util/util.h"
 
 #include <vector>
@@ -14,7 +15,7 @@ ParserError Parser::parse_tokens(std::vector<Token> &p_tokens) {
 			CRASH_MSG_IF(token.token_value != "print", "Only the `print` function is currently implemented. Strings are also not supported, and will generate this error.", 1);
 
 			// TODO: Call functions from the inner-most scope, outwards.
-			std::vector<Token> args = get_all_in_function(p_tokens, token);
+			std::vector<Token> args = get_all_args_in_function(p_tokens, token);
 
 			for (Token arg : args) {
 				printf("%s", arg.token_value.c_str());
@@ -25,7 +26,7 @@ ParserError Parser::parse_tokens(std::vector<Token> &p_tokens) {
 	return ParserError::NONE;
 }
 
-std::vector<Token> get_all_in_function(std::vector<Token> &p_tokens, Token &p_token) {
+std::vector<Token> Parser::get_all_args_in_function(std::vector<Token> &p_tokens, Token &p_token) {
 	std::vector<Token> tokens;
 
 	int position = util::index_of(p_tokens, p_token);

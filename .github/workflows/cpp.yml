@@ -15,5 +15,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Style
       run: ./style-check
-    - name: Compile
-      run: ./build
+    - name: Compile Debug
+      run: ./build-debug
+    - name: Compile Release
+      run: ./build-release

@@ -1,4 +1,0 @@
-#!/bin/bash
-clang-format -i ./src/**/**
-./build && \
-./bin/debug.x86_64 $1

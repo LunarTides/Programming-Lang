@@ -1,9 +1,8 @@
 #include "util.h"
 
-#include "../lexer/lexer.h"
+#include "../token.h"
 
 namespace util {
-
 bool is_number(const std::string &p_str) {
 	char *p;
 	strtol(p_str.c_str(), &p, 10);
@@ -19,5 +18,4 @@ int index_of(std::vector<Token> &p_tokens, Token &p_token) {
 		return -1;
 	}
 }
-
 } //namespace util

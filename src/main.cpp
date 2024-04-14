@@ -1,11 +1,13 @@
+#include "token.h"
+#include "macros.h"
+
 #include "lexer/lexer.cpp"
 #include "parser/parser.cpp"
-#include "macros.h"
 
 #include <iostream>
 #include <string>
 
-int main(int argc, char **argv) {
+int main(int argc, char *argv[]) {
 	CRASH_MSG_IF(argc < 2, "Not enough arguments.", 1);
 
 	PRINT_DEBUG("[Main] Lexing...\n");
