@@ -7,8 +7,24 @@
 #include <iostream>
 #include <string>
 
+#ifdef DEBUG_ENABLED
+#include "test/test.cpp"
+#endif
+
+
 int main(int argc, char *argv[]) {
 	CRASH_MSG_IF(argc < 2, "Not enough arguments.", 1);
+
+#ifdef DEBUG_ENABLED
+	if (std::string(argv[1]) == "--test") {
+		CRASH_MSG_IF(argc < 3, "Not enough arguments. Usage: " << argv[0] << " --test <directory_path>.", 1);
+
+		std::string directory_path = argv[2];
+
+		Test *test_runner = new Test();
+		return (int) test_runner->test_all(directory_path);
+	}
+#endif
 
 	PRINT_DEBUG("[Main] Lexing...\n");
 
